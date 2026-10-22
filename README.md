@@ -1,7 +1,7 @@
 # Squeezy
 
 A simple, modern archive tool built with Python and CustomTkinter.  
-Compress files/folders and extract archives with a clean dark UI, progress bar, and cancel support.
+Compress files/folders and extract archives with a clean dark UI, progress bar
 
 ![Squeezy](https://img.shields.io/badge/Python-3.10%2B-blue)  
 ![UI](https://img.shields.io/badge/UI-CustomTkinter-green)
