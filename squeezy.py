@@ -1,7 +1,10 @@
 import subprocess
 import threading
+import os
 import customtkinter as ctk
 from tkinter import filedialog, messagebox
+
+SEVEN_ZIP = r"C:\Program Files\7-Zip\7z.exe"
 
 class ArchiveApp(ctk.CTk):
     def __init__(self):
@@ -22,13 +25,12 @@ class ArchiveApp(ctk.CTk):
 
         self.progress = ctk.CTkProgressBar(self, width=300, mode="indeterminate")
         self.progress.pack(pady=20)
-        self.progress.pack_forget()          
+        self.progress.pack_forget()
 
         self.status = ctk.CTkLabel(self, text="")
         self.status.pack(pady=5)
 
     def set_busy(self, busy: bool, message: str = ""):
-        """Enable/disable buttons + show/hide progress bar"""
         state = "disabled" if busy else "normal"
         self.compress_btn.configure(state=state)
         self.extract_btn.configure(state=state)
@@ -50,18 +52,21 @@ class ArchiveApp(ctk.CTk):
 
         if choice is None:
             return
-        elif choice:  
+        elif choice:
             selected = filedialog.askopenfilenames(title="Select Files to Compress")
             if not selected:
                 return
             items = list(selected)
-        else:  
+        else:
             folder = filedialog.askdirectory(title="Select Folder to Compress")
             if not folder:
                 return
             items = [folder]
 
+        desktop = os.path.join(os.path.expanduser("~"), "Desktop")
+
         output_file = filedialog.asksaveasfilename(
+            initialdir=desktop,
             defaultextension=".7z",
             filetypes=[
                 ("7z Archive", "*.7z"),
@@ -75,9 +80,9 @@ class ArchiveApp(ctk.CTk):
 
         lower = output_file.lower()
         if lower.endswith(".7z"):
-            cmd = ["7z", "a", output_file] + items
+            cmd = [SEVEN_ZIP, "a", output_file] + items
         elif lower.endswith(".zip"):
-            cmd = ["7z", "a", "-tzip", output_file] + items
+            cmd = [SEVEN_ZIP, "a", "-tzip", output_file] + items
         else:
             messagebox.showwarning(
                 "Format",
@@ -85,7 +90,7 @@ class ArchiveApp(ctk.CTk):
             )
             if not lower.endswith(".7z"):
                 output_file = output_file.rsplit(".", 1)[0] + ".7z"
-            cmd = ["7z", "a", output_file] + items
+            cmd = [SEVEN_ZIP, "a", output_file] + items
 
         self.set_busy(True, "Compressing... please wait")
         threading.Thread(
@@ -105,7 +110,7 @@ class ArchiveApp(ctk.CTk):
         if not dest:
             return
 
-        cmd = ["7z", "x", archive, f"-o{dest}", "-y"]
+        cmd = [SEVEN_ZIP, "x", archive, f"-o{dest}", "-y"]
 
         self.set_busy(True, "Extracting... please wait")
         threading.Thread(
@@ -117,10 +122,10 @@ class ArchiveApp(ctk.CTk):
     def _run_command(self, cmd, success_msg):
         try:
             subprocess.run(cmd, check=True)
-            # Back to main thread to update UI
             self.after(0, lambda: self._on_success(success_msg))
         except Exception as e:
-            self.after(0, lambda: self._on_error(str(e)))
+            error_msg = str(e)
+            self.after(0, lambda: self._on_error(error_msg))
 
     def _on_success(self, msg):
         self.set_busy(False, "")
