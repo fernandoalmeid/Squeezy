@@ -1,86 +1,51 @@
+<div align="center">
+
 # Squeezy
 
 **Modern archive tool** built with Python and CustomTkinter.
 
-Compress files or folders and extract archives with a clean dark UI and animated progress bar. Supports the most common formats used every day.
+Compress files/folders and extract archives with a clean dark UI and progress bar.
 
-A simple desktop utility focused on ease of use and a polished look.
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![CustomTkinter](https://img.shields.io/badge/UI-CustomTkinter-green?style=flat-square)](https://github.com/TomSchimansky/CustomTkinter)
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![UI](https://img.shields.io/badge/UI-CustomTkinter-green)
+</div>
 
 ---
 
-## Features
+### Features
 
-- **Compress** files or entire folders
-- Supported formats: `.7z`, `.zip` (`.rar` falls back to `.7z`)
-- **Extract** `.7z`, `.zip`, `.rar`, `.tar*` archives
-- Animated progress bar while working
+- Compress files or entire folders
+- Formats: `.7z`, `.zip` (`.rar` falls back to `.7z`)
+- Extract `.7z`, `.zip`, `.rar`, `.tar*`
+- Animated progress bar
 - Clean dark interface
 
----
+### Requirements
 
-## Requirements
+- Python 3.10+
+- [7-Zip](https://www.7-zip.org/) in PATH
+- `pip install customtkinter`
 
-- Python 3.10 or higher
-- [7-Zip](https://www.7-zip.org/) installed and available in PATH
-- Python packages:
-
-```bash
-pip install customtkinter
-```
-
-> **Note:** On Windows, after installing 7-Zip, restart your terminal/editor so the `7z` command is recognized.
-
----
-
-## How to Run
+### How to run
 
 ```bash
 python squeezy.py
 ```
 
----
-
-## How to Use
-
-### Compress
-1. Click **Compress Folder/Files**
-2. Choose **Yes** for files or **No** for a folder
-3. Select what you want to compress
-4. Choose where to save the archive (`.7z` or `.zip` recommended)
-5. Wait for the progress bar
-
-### Extract
-1. Click **Extract Archive**
-2. Select the archive file
-3. Choose the destination folder
-4. Wait for extraction
-
----
-
-## Project Structure
+### Project structure
 
 ```
 Squeezy/
-├── squeezy.py      # Main application
-└── README.md       # This file
+├── squeezy.py
+└── README.md
 ```
 
----
+### Notes
 
-## Notes
-
-- Real `.rar` creation is **not supported** by 7-Zip (it can only extract RAR).  
-  If you choose `.rar`, Squeezy automatically falls back to `.7z`.
-- Make sure `7z` works in your terminal before running the app:
-  ```bash
-  7z
-  ```
+- Real `.rar` creation is not supported by 7-Zip (extraction only)
+- Make sure `7z` works in your terminal before running
 
 ---
 
-## License
-
-MIT — feel free to use and modify.
+**License:** MIT
