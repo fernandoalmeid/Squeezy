@@ -1,9 +1,12 @@
 # Squeezy
 
-A simple, modern archive tool built with Python and CustomTkinter.  
-Compress files/folders and extract archives with a clean dark UI, progress bar
+**Modern archive tool** built with Python and CustomTkinter.
 
-![Squeezy](https://img.shields.io/badge/Python-3.10%2B-blue)  
+Compress files or folders and extract archives with a clean dark UI and animated progress bar. Supports the most common formats used every day.
+
+A simple desktop utility focused on ease of use and a polished look.
+
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![UI](https://img.shields.io/badge/UI-CustomTkinter-green)
 
 ---
@@ -14,6 +17,7 @@ Compress files/folders and extract archives with a clean dark UI, progress bar
 - Supported formats: `.7z`, `.zip` (`.rar` falls back to `.7z`)
 - **Extract** `.7z`, `.zip`, `.rar`, `.tar*` archives
 - Animated progress bar while working
+- Clean dark interface
 
 ---
 
@@ -46,13 +50,13 @@ python squeezy.py
 2. Choose **Yes** for files or **No** for a folder
 3. Select what you want to compress
 4. Choose where to save the archive (`.7z` or `.zip` recommended)
-5. Wait for the progress bar 
+5. Wait for the progress bar
 
 ### Extract
 1. Click **Extract Archive**
 2. Select the archive file
 3. Choose the destination folder
-4. Wait for extraction 
+4. Wait for extraction
 
 ---
 
